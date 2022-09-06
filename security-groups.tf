@@ -1,14 +1,21 @@
-resource "aws_security_group" "node_group_one" {
+resource "aws_security_group" "eks_security_group" {
   name_prefix = "node_group_one"
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description      = "to add"
-    from_port = 22  # SSH
-    to_port   = 22
-    protocol  = "tcp"
+    description      = "Ingress all"
+    protocol         = "-1"
+    from_port        = 0
+    to_port          = 0
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
 
-    cidr_blocks = [module.vpc.vpc_cidr_block]
+  egress {
+    description      = "Egress all"
+    protocol         = "-1"
+    from_port        = 0
+    to_port          = 0
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 }
 

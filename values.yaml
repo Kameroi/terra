@@ -1,0 +1,10 @@
+name: my-wordpress
+rules:
+  host: foo.bar.com
+  service:
+    port:
+      number: 80
+defaultBackend:
+  service:
+    port:
+      number: 80
